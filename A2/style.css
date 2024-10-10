@@ -7,15 +7,15 @@ body {
 }
 
 .page {
-    width: 850px;
+    width: 100%;
     background-color: white;
-    margin: auto;
     padding: 50px;
     padding-top: 35px;
 }
 
 .vis-container {
-    width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 .description h2,
