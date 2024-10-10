@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 400,
+  "title": {"text": "Incidents of Homicide by classification"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/Saga00012/FIT3179/refs/heads/main/A2/homicide_class.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "fold": [
+        "domestic",
+        "acquaintance",
+        "stranger",
+        "relationship_not_stated",
+        "filicide",
+        "parricide",
+        "siblicide",
+        "intimate_partner",
+        "other_family"
+      ]
+    }
+  ],
+  "mark": "rect",
+  "encoding": {
+    "x": {"field": "states", "type": "ordinal", "title": "State"},
+    "y": {"field": "key", "type": "nominal", "title": "Category"},
+    "color": {"field": "value", "type": "quantitative", "title": "Count"}
+  },
+  "config": {"view": {"strokeWidth": 0, "step": 13}, "axis": {"domain": false}}
+}

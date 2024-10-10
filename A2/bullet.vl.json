@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Incidents of Homicide by status"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/Saga00012/FIT3179/refs/heads/main/A2/state_cleared.csv"
+  },
+  "transform": [{"fold": ["cleared", "not_cleared"], "as": ["type", "value"]}],
+  "facet": {
+    "row": {
+      "field": "state",
+      "type": "ordinal",
+      "header": {"labelAngle": 0, "title": "State"}
+    }
+  },
+  "spacing": 10,
+  "spec": {
+    "encoding": {
+      "x": {
+        "field": "value",
+        "type": "quantitative",
+        "scale": {"nice": false},
+        "title": "Number of Cases"
+      },
+      "color": {
+        "field": "type",
+        "type": "nominal",
+        "title": "Case Status",
+        "scale": {
+          "domain": ["cleared", "not_cleared"],
+          "range": ["steelblue", "grey"]
+        }
+      },
+      "tooltip": [
+        {"field": "state", "title": "State"},
+        {"field": "type", "title": "Case Status"},
+        {"field": "value", "title": "Number of Cases"}
+      ]
+    },
+    "layer": [{"mark": {"type": "bar"}}]
+  },
+  "resolve": {"scale": {"x": "independent"}},
+  "config": {}
+}

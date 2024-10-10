@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 300,
+  "title": {"text": "Weapons used during Homicide Attacks"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/Saga00012/FIT3179/refs/heads/main/A2/weapons_used.csv"
+  },
+  "transform": [
+    {
+      "fold": [
+        "firearm",
+        "knife_other_sharp_instrument",
+        "blunt_instrument",
+        "hands_and_feet",
+        "vehicle",
+        "other_weapon",
+        "weapon_not_stated"
+      ],
+      "as": ["Weapon Type", "Count"]
+    },
+    {"filter": {"selection": "WeaponType"}}
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "states", "type": "ordinal", "title": "States"},
+    "y": {
+      "aggregate": "sum",
+      "field": "Count",
+      "type": "quantitative",
+      "title": "Number of Attacks"
+    },
+    "color": {
+      "field": "Weapon Type",
+      "type": "nominal",
+      "scale": {"scheme": "tableau10"},
+      "title": "Weapon Type"
+    },
+    "tooltip": [
+      {"field": "states", "type": "ordinal", "title": "State"},
+      {"field": "Weapon Type", "type": "nominal", "title": "Weapon Type"},
+      {"field": "Count", "type": "quantitative", "title": "Number of Attacks"}
+    ]
+  },
+  "selection": {
+    "WeaponType": {
+      "type": "single",
+      "fields": ["Weapon Type"],
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "firearm",
+          "knife_other_sharp_instrument",
+          "blunt_instrument",
+          "hands_and_feet",
+          "vehicle",
+          "other_weapon",
+          "weapon_not_stated"
+        ],
+        "name": "Select weapon type: "
+      }
+    }
+  },
+  "config": {}
+}
