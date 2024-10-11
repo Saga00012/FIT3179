@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Homicide Statistics</title>
+
+     <!-- Import Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+
+    <!-- Import vega-embed -->  
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <!-- Import PureCSS for lightweight styling -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+
+
+    <!-- Custom Style using css-->
+  <style>
+      * {
+      font-family: 'Oxygen', sans-serif;
+      line-height: 1.5;
+    }
+
+    h1 {
+      font-weight: 900;
+
+    }
+
+    body {
+      background-color: lightgray;
+    }
+
+    .page {
+      width: 750px;
+      background-color: white;
+      margin: auto;
+      padding: 70px;
+      padding-top: 35px;
+    }
+
+    .vis-container {
+      width: 100%;
+    }
+
+    .description h2,
+    h1 {
+      margin-top: 10px;
+    }
+
+    .description-right {
+      padding-left: 10px;
+    }
+
+    .description-left {
+      padding-right: 10px;
+    }
+
+    .pure-g {
+      margin-bottom: 25px;
+    }
+
+    .small-font {
+      font-size: 13px;
+    }  
+</style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- Heading and subtitle -->
+    <div class="pure-g">
+      <div class="pure-u-1-1" style="text-align: center;">
+        <h1>Homicide Statistics</h1>
+        <p>Australian Homicide Statistics in 2022-2023 from the National Homicide Monitoring Program.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Choropleth map -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis1" class="vis-container"></div>
+        </div>
+      </div>
+    <!-- end pure grid group -->
+
+    <!-- Homicide Incidents -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+          <p>There was a total of 232 incidents of homicide recorded by Australia between 1 July 2022 
+            and 30 June 2023. Which was an increase of 14 in comparison to the previous year.</p>
+        </div>
+      </div>
+    <!-- end pure grid group -->
+
+    <!-- Incident clearance rates -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="description description-right">
+            <h2>Incident Clearance Rates</h2>
+            <p>In 2022-2023 about 90% of homicide incidents were cleared at the time of 
+              reporting. For Australian Capital Territory and Tasmania, 100% were cleared.
+              The remaining states made up for the 10% uncleared cases, with New South Wales 
+              having the most un-cleared cases displayed by the bullet chart.</p>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+          <div id="vis3" class="vis-container"></div>
+        </div>
+      </div>
+    <!-- end pure grid group -->
+
+    <!-- Weapon Use -->
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div id="vis2" class="vis-container"></div>
+        </div>
+
+      <div class="pure-u-1-2">
+        <div class="description description-right">
+          <h2>Weapon Use</h2>
+          <p>A weapon was used 86% of the homicide incidents recording in 2022-2023. Where knives
+            and other sharp instruments were the most commonly used weapons in homicides in Australia.
+            Where since 1989 35% of homicide incidents have involved this weapon type.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Homicide Classification -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div class="description description-right">
+          <h2>Homicide Classification</h2>
+          <p>The homicide classification is based off the relationship
+            between the primary victim and the primary offender. Where 
+            domestic homicide was 34% of all homicide incidents, 28% was 
+            acquaintance and 15% was stranger.</p>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div id="vis4" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>Created by Shivank Agarwal 33120153 from FIT3179 S2 Monday 10-12PM</p>
+      </div>
+    </div>
+
+  </div>
+
+<script type="text/javascript">
+    var specVis1 = "./A2/ausmap.vl.json";
+    var specVis2 = "./A2/barchart.vl.json";
+    var specVis3 = "./A2/bullet.vl.json";
+    var specVis4 = "./A2/heat.vl.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
+</body>
+
+</html>
