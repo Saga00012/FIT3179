@@ -2,7 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 300,
-  "title": {"text": "Incidents of Homicide by Status"},
+    "title": {
+    "text": "Incidents of Homicide by Status",
+    "anchor": "middle"
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/Saga00012/FIT3179/refs/heads/main/A2/state_cleared.csv"
   },
